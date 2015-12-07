@@ -5,10 +5,6 @@ include ::apt
   #
   # http://www.postgresql.org/download/linux/debian/
   #
-  apt::pin { 'apt.postgresql.org':
-    originator => 'apt.postgresql.org',
-    priority   => 500,
-  }->
   apt::source { 'apt.postgresql.org':
     location    => 'http://apt.postgresql.org/pub/repos/apt/',
     release     => "${::lsbdistcodename}-pgdg",
