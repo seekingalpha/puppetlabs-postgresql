@@ -7,7 +7,7 @@ include ::apt
   #
   apt::source { 'apt.postgresql.org':
     location    => 'http://apt.postgresql.org/pub/repos/apt/',
-    release     => "${::lsbdistcodename}-pgdg",
+    release     => "${::lsbdistcodename}-pgdg${postgresql::repo::testing}",
     repos       => "main ${postgresql::repo::version}",
     key         => {
       id        => 'B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8',

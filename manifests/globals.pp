@@ -42,6 +42,7 @@ class postgresql::globals (
   $version                = undef,
   $postgis_version        = undef,
   $repo_proxy             = undef,
+  $testing                = undef,
 
   $needs_initdb           = undef,
 
@@ -135,11 +136,17 @@ class postgresql::globals (
     default => $postgis_version,
   }
 
+  $testing_repo = $testing ? {
+    true    => '-testing',
+    default => '',
+  }
+
   # Setup of the repo only makes sense globally, so we are doing this here.
   if($manage_package_repo) {
     class { 'postgresql::repo':
       version => $globals_version,
       proxy   => $repo_proxy,
+      testing => $testing_repo,
     }
   }
 }
